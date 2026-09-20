@@ -1,4 +1,4 @@
-# Tap on KOTOBA — 大きな文字で遊ぶ、四字熟語・ことわざの穴うめパズル
+# Tap on KOTOBA — 大きな文字で遊ぶ、ことばの穴うめパズル
 
 インストール不要・通信なし・依存ライブラリなしのことばパズルです。
 `app/index.html` をブラウザで開くだけで遊べます。ファイルをローカルに置いたまま（`file://`）でも、
@@ -6,11 +6,19 @@
 
 - 紹介ページ: <https://pikaring.github.io/tap-on-kotoba/>
 - ゲーム本体: <https://pikaring.github.io/tap-on-kotoba/app/>
-- 1 ファイル版: [`app/standalone.html`](app/standalone.html)（約 35 KB。これ 1 つで配布できます）
+- 1 ファイル版: [`app/standalone.html`](app/standalone.html)（約 70 KB。これ 1 つで配布できます）
 
-「一石□鳥」「棚から□」の□に入ることばを、4 つのタイルから選びます。全 100 問
-（四字熟語 50 問・ことわざ 50 問）から毎回 10 問。**高齢の方が遊ぶことを前提**に、
+「一石□鳥」「棚から□」の□に入ることばを、4 つのタイルから選びます。
+始めるときにジャンルを選び、そこから毎回 10 問。**高齢の方が遊ぶことを前提**に、
 画面いっぱいの大きな文字、タップだけの操作、時間制限も減点もない進行にしています。
+
+| ジャンル | 記号 | 問題数 | 形式 |
+|---|---|---:|---|
+| 四字熟語 | `y` | 50 | 「一石□鳥」の□を選ぶ |
+| ことわざ | `k` | 50 | 「棚から□」の□を選ぶ |
+| 慣用句 | `i` | 100 | 「気が□けない」の□を選ぶ |
+| 難読漢字 | `d` | 100 | 「柳葉魚」の**読みかた**を選ぶ |
+| ランダム | — | 300 | 上の 4 ジャンル全部から |
 
 名前は、タップ（tap）するだけで遊べることば（KOTOBA）のパズルだから。
 アイコンは選択肢のタイルと、空欄の「？」です。
@@ -19,11 +27,13 @@
 
 **Tap on KOTOBA** is a Japanese word puzzle that runs entirely in the browser.
 No install, no sign-up, no network traffic, no dependencies. Open `app/index.html` and play,
-or grab the single-file build `app/standalone.html` (~35 KB) and play offline.
+or grab the single-file build `app/standalone.html` (~70 KB) and play offline.
 
 - Play now: <https://pikaring.github.io/tap-on-kotoba/app/>
-- Fill the blank in a four-character idiom (四字熟語) or a proverb (ことわざ) by tapping one of four tiles.
-- 100 questions (50 idioms, 50 proverbs); 10 random ones per round. Reading and meaning are shown after each correct answer.
+- Pick a category first, then fill the blank by tapping one of four tiles.
+- 300 questions in four categories: four-character idioms (50), proverbs (50), idiomatic phrases (100),
+  and hard-to-read kanji (100, where you choose the reading instead). "Random" draws from all of them.
+- 10 questions per round. Reading and meaning are shown after each correct answer.
 - Built for older players: type scales with the viewport (up to 96px), tap-only input, no timer, no penalty, no game over.
 - Works in both landscape and portrait; the layout switches when you rotate the device.
 - The UI and all content are in Japanese.
@@ -36,14 +46,16 @@ tap-on-kotoba/
 ├── make_og.py        OGP画像の生成スクリプト
 └── app/              ゲーム本体（ここが実体）
     ├── index.html        これを開く
-    ├── questions.js      問題データ（100問）
+    ├── questions.js      問題データ（300問・4ジャンル）
     ├── standalone.html   1 ファイル版（build.js が生成）
     └── build.js          index.html に JS を埋め込むビルドスクリプト
 ```
 
 ## 遊び方
 
-1 問ごとに 1 か所が空欄になっています。下に並ぶ 4 つのタイルから、当てはまることばをタップします。
+開くとジャンル選びの画面が出ます。ひとつ選ぶと 10 問が始まります。
+1 問ごとに 1 か所が空欄になっているので、下に並ぶ 4 つのタイルから、当てはまることばをタップします。
+（難読漢字だけは、語の下の空欄に入る読みかたを選びます。）
 
 - **時間制限なし・減点なし**。間違えたタイルには ✕ が付き、何度でも選び直せます
 - 正解すると読みと意味を大きな文字で表示し、「つぎへ」で次の問題へ
@@ -51,6 +63,7 @@ tap-on-kotoba/
 - 上部の帯が進み具合。一度で正解した問題は緑、選び直した問題は黄色
 - 「♪ 音あり / 音なし」で効果音を切り替え（音が出せない端末では自動的に無効）
 - 最後に「一度で正解した数」を★で表示。順位も記録も残しません
+- 結果画面の「ジャンルを えらぶ」で選び直せます
 
 ## 高齢者向けに意図した設計
 
@@ -69,16 +82,28 @@ tap-on-kotoba/
 
 ## 問題の追加・変更
 
-`app/questions.js` の `QUESTIONS` 配列に足すだけです（現在 100 問）。
+`app/questions.js` の `QUESTIONS` 配列に足すだけです（現在 300 問）。
 
 ```js
-{ t:"k",                       // "y"=四字熟語 / "k"=ことわざ（見出しの表示が変わる）
+{ t:"k",                       // ジャンル記号。y=四字熟語 k=ことわざ i=慣用句 d=難読漢字
   q:"猿も_から落ちる",          // "_" が空欄の位置
   a:"木",                      // 正解
   c:["木","枝","山","屋根"],    // 選択肢4つ（正解を含む。表示順はシャッフルされる）
   yomi:"さるも きからおちる",
   imi:"どんな名人でも、ときには失敗することがある。" }
+
+// 難読漢字（t:"d"）だけは "_" を置かず、読みを選ばせる
+{ t:"d", q:"柳葉魚", a:"ししゃも",
+  c:["ししゃも","わかさぎ","きびなご","はたはた"],
+  yomi:"ししゃも", imi:"北海道の魚。名はアイヌ語から。" }
 ```
+
+ジャンルを増やすときは、`app/index.html` の `GENRES` と `LABEL` に 1 行ずつ足します。
+選択画面のボタンと問題数の表示は、そこから自動で作られます。
+
+**誤答の選択肢は、それ自体が正解になってしまう語を避けて選んでいます。**
+たとえば「耳が□い」の選択肢に「早」「遠」は入れません（耳が早い・耳が遠い も成り立つため）。
+問題を足すときは、同じ点に気をつけてください。
 
 選択肢は 4 つ前提（横向きは 1 列に 4 つ、縦向きは 2×2）。増やす場合は `app/index.html` の
 `.choices` の `grid-template-columns` も調整してください。1 回の出題数は同ファイルの
@@ -122,10 +147,14 @@ Playwright で 6 サイズ（横向き 844×390 / 667×375 / 1024×600、縦向�
 枠からはみ出さないこと・最も長い解説を表示しても画面が押し出されないこと・
 1 問の正誤〜結果画面まで進めること・JS エラーが出ないことを確認しています。
 
-あわせて全 100 問を 1 問ずつ実際に描画し、問題文の重複がないこと、選択肢が 4 つで
-重複がなく正解を含むこと、空欄が 1 つであること、自動縮小がかかっても文字が小さく
-なりすぎないこと（最も長い「井の中の蛙□を知らず」でも横 844×390 で 70px、
+あわせて全 300 問を 1 問ずつ実際に描画し、問題文の重複がないこと、選択肢が 4 つで
+重複がなく正解を含むこと、空欄がジャンルどおりの数であること（難読漢字は 0、ほかは 1）、
+自動縮小がかかっても文字が小さくなりすぎないこと（最も長い問題文でも横 844×390 で 70px、
 横 667×375 で 57px）を確認しています。
+
+ジャンル選びの画面についても、5 サイズで、はみ出しがないこと・4 ジャンルそれぞれの
+見出しと出題形式が正しいこと・ランダムで複数ジャンルが混ざること・
+結果画面から選び直せることを確認しています。
 
 ## ライセンス
 

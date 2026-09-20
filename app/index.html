@@ -80,6 +80,9 @@
     border-bottom:.12em solid var(--accent); color:var(--accent);
   }
   .blank.filled{color:var(--ok); border-bottom-color:var(--ok)}
+  /* 難読漢字は、語の下に読みの空欄を置く */
+  .kana{display:block; width:max-content; max-width:100%;
+        font-size:.52em; margin:.12em auto 0; line-height:1.25}
   .msg{margin:0; font-size:clamp(14px,4dvh,26px); color:var(--sub); min-height:1.3em}
   .msg.okmsg{color:var(--ok); font-weight:600}
   .msg.ngmsg{color:var(--ng)}
@@ -123,6 +126,22 @@
   .again{border:none; background:var(--accent); color:#fff; border-radius:14px;
          font-size:clamp(18px,5.5dvh,34px); font-weight:600; padding:.5em 1.6em;
          min-height:clamp(48px,14dvh,88px)}
+  .again.sub{background:none; color:var(--ink); border:3px solid var(--line)}
+  .btnrow{display:flex; flex-wrap:wrap; gap:clamp(8px,2vw,18px); justify-content:center}
+
+  /* ───── ジャンル選び ───── */
+  .genres{display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(7px,1.6vw,16px);
+          width:100%; max-width:1100px}
+  .genre{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.15em;
+    border:3px solid var(--line); background:var(--panel); border-radius:14px;
+    min-height:clamp(58px,26dvh,150px); padding:.4em .2em;
+    font-size:clamp(17px,min(6.5dvh,2.7vw),36px); font-weight:700; line-height:1.15;
+    box-shadow:0 3px 0 #E0D5BE; white-space:nowrap;
+  }
+  .genre:active{transform:translateY(3px); box-shadow:none}
+  .genre .num{font-size:.5em; font-weight:400; color:var(--sub)}
+  .genre.all{border-color:var(--accent); color:var(--accent)}
 
   /* ───── 縦持ち(ポートレート) ───── */
   @media (orientation:portrait){
@@ -137,6 +156,9 @@
     .yomi{font-size:clamp(15px,min(2.6dvh,4.4vw),26px)}
     .imi{font-size:clamp(19px,min(3.6dvh,6.2vw),38px)}
     .next{width:100%; min-height:clamp(54px,8dvh,96px)}
+    .genres{grid-template-columns:1fr 1fr}
+    .genre{min-height:clamp(64px,11dvh,130px); font-size:clamp(19px,min(5dvh,7vw),38px)}
+    .genre.all{grid-column:1 / -1}
     .count{font-size:clamp(14px,3.6vw,22px)}
     .tool{font-size:clamp(13px,3.4vw,20px)}
   }
@@ -176,7 +198,16 @@
   <p class="big" id="rTitle"></p>
   <p class="stars" id="rStars"></p>
   <p class="mid" id="rBody"></p>
-  <button class="again" id="again" type="button">もう一度 あそぶ</button>
+  <div class="btnrow">
+    <button class="again" id="again" type="button">もう一度 あそぶ</button>
+    <button class="again sub" id="toStart" type="button">ジャンルを えらぶ</button>
+  </div>
+</div>
+
+<div class="overlay" id="start">
+  <p class="big">ことば穴うめパズル</p>
+  <p class="mid">ジャンルを えらんでください</p>
+  <div class="genres" id="genres"></div>
 </div>
 
 <script src="questions.js"></script>
@@ -184,13 +215,22 @@
 (function(){
   "use strict";
   var PER_GAME = 10;
+  var GENRES = [
+    { key:"y", name:"四字熟語" },
+    { key:"k", name:"ことわざ" },
+    { key:"i", name:"慣用句" },
+    { key:"d", name:"難読漢字" },
+    { key:"*", name:"ランダム" }
+  ];
+  var LABEL = { y:"四字熟語", k:"ことわざ", i:"慣用句", d:"難読漢字" };
+  var genre = "*";
   var deck = [], idx = 0, star = 0, firstTry = true, soundOn = true, answered = false;
 
   var $ = function(id){ return document.getElementById(id); };
   var dotsEl=$("dots"), countEl=$("count"), hintBtn=$("hint"), soundBtn=$("sound"),
       qlabelEl=$("qlabel"), quizEl=$("quiz"), msgEl=$("msg"), choicesEl=$("choices"),
       answerEl=$("answer"), yomiEl=$("yomi"), imiEl=$("imi"), nextBtn=$("next"),
-      resultEl=$("result");
+      resultEl=$("result"), startEl=$("start"), genresEl=$("genres");
 
   /* ── 音(短い和音。WebAudio が無い端末では黙って無効) ── */
   var actx = null;
@@ -240,8 +280,32 @@
     Array.prototype.forEach.call(choicesEl.children, function(b){ fit(b); });
   }
 
-  function newGame(){
-    deck = shuffle(QUESTIONS).slice(0, PER_GAME);
+  function pool(g){
+    return g === "*" ? QUESTIONS : QUESTIONS.filter(function(q){ return q.t === g; });
+  }
+
+  /* ── ジャンル選び ── */
+  function buildStart(){
+    genresEl.innerHTML = "";
+    GENRES.forEach(function(g){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "genre" + (g.key === "*" ? " all" : "");
+      b.innerHTML = g.name + '<span class="num">' + pool(g.key).length + '問から</span>';
+      b.addEventListener("click", function(){ startEl.hidden = true; newGame(g.key); });
+      genresEl.appendChild(b);
+    });
+  }
+  function showStart(){
+    resultEl.hidden = true;
+    startEl.hidden = false;
+    buildStart();
+  }
+  $("toStart").addEventListener("click", showStart);
+
+  function newGame(g){
+    if(g) genre = g;
+    deck = shuffle(pool(genre)).slice(0, PER_GAME);
     idx = 0; star = 0;
     dotsEl.innerHTML = "";
     for(var i = 0; i < deck.length; i++){
@@ -260,18 +324,27 @@
     Array.prototype.forEach.call(dotsEl.children, function(d, i){
       d.classList.toggle("now", i === idx);
     });
-    qlabelEl.textContent = item.t === "y" ? "四字熟語" : "ことわざ";
+    qlabelEl.textContent = LABEL[item.t] || "";
 
-    var parts = item.q.split("_");
     quizEl.className = "quiz" + (item.t === "y" ? " yoji" : "");
     quizEl.innerHTML = "";
-    quizEl.appendChild(document.createTextNode(parts[0]));
     var blank = document.createElement("span");
     blank.className = "blank"; blank.id = "blank"; blank.textContent = "？";
-    quizEl.appendChild(blank);
-    quizEl.appendChild(document.createTextNode(parts[1] || ""));
+    if(item.q.indexOf("_") < 0){
+      /* 難読漢字：語を見せ、その下の空欄に読みを入れる */
+      quizEl.appendChild(document.createTextNode(item.q));
+      blank.classList.add("kana");
+      quizEl.appendChild(blank);
+    }else{
+      var parts = item.q.split("_");
+      quizEl.appendChild(document.createTextNode(parts[0]));
+      quizEl.appendChild(blank);
+      quizEl.appendChild(document.createTextNode(parts[1] || ""));
+    }
 
-    msgEl.textContent = "□に入る ことばを えらんでください";
+    msgEl.textContent = item.q.indexOf("_") < 0
+      ? "読みかたを えらんでください"
+      : "□に入る ことばを えらんでください";
     msgEl.className = "msg";
 
     choicesEl.innerHTML = "";
@@ -359,7 +432,7 @@
     $("again").focus({ preventScroll:true });
     beep([523, 659, 784], 0.22);
   }
-  $("again").addEventListener("click", newGame);
+  $("again").addEventListener("click", function(){ newGame(); });
 
   soundBtn.addEventListener("click", function(){
     soundOn = !soundOn;
@@ -370,6 +443,11 @@
 
   /* ── キーボード(PC確認用): 1〜4で選択、Enter/スペースで次へ ── */
   document.addEventListener("keydown", function(e){
+    if(!startEl.hidden){
+      var n = Number(e.key);
+      if(n >= 1 && n <= GENRES.length){ genresEl.children[n - 1].click(); }
+      return;
+    }
     if(!resultEl.hidden){
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); newGame(); }
       return;
@@ -387,7 +465,7 @@
     setTimeout(fitAll, 250);
   });
 
-  newGame();
+  showStart();
 })();
 </script>
 </body>
