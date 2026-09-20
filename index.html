@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tap on KOTOBA｜大きな文字で遊ぶ、四字熟語・ことわざの穴うめパズル</title>
+<meta name="description" content="インストール不要・通信なし・1ファイルで動く、四字熟語とことわざの穴うめパズル。全100問。タップだけで遊べて、時間制限も減点もなし。横向き・縦向きのどちらでも、画面いっぱいの大きな文字で表示します。">
+<meta property="og:title" content="Tap on KOTOBA">
+<meta property="og:description" content="□に入る、ひとこと。大きな文字とタップだけで遊ぶ、四字熟語・ことわざの穴うめパズル。全100問、時間制限なし。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pikaring.github.io/tap-on-kotoba/">
+<meta property="og:image" content="https://pikaring.github.io/tap-on-kotoba/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tap on KOTOBA">
+<meta name="twitter:description" content="□に入る、ひとこと。大きな文字とタップだけで遊ぶ、四字熟語・ことわざの穴うめパズル。全100問、時間制限なし。">
+<meta name="twitter:image" content="https://pikaring.github.io/tap-on-kotoba/assets/og.png">
+<link rel="icon" href="assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top"><img src="assets/icon.png" alt=""> Tap on KOTOBA</a>
+    <nav class="nav">
+      <a href="#books">本</a>
+      <a href="#questions">問題</a>
+      <a href="#design">読みやすさ</a>
+      <a href="#how">遊び方</a>
+      <a href="#faq">よくある質問</a>
+      <a class="btn btn-main" href="app/">いますぐ遊ぶ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><b>無料</b> · インストール不要 · 通信なし · MIT License</span>
+        <h1>□に入る、<br>ひとこと。</h1>
+        <p class="lead">「一石□鳥」の□に入る字は。四字熟語とことわざの穴うめパズルです。
+          画面いっぱいの大きな文字で、タップだけで遊べます。
+          時間制限も、減点も、ゲームオーバーもありません。</p>
+        <div class="hero-actions">
+          <a class="btn btn-main" href="app/">いますぐ遊ぶ</a>
+          <a class="btn btn-sub" href="https://github.com/pikaring/tap-on-kotoba">GitHubで見る</a>
+        </div>
+        <p class="hero-note">端末を横にしても縦にしても、その向きに合わせて文字が最大になります。</p>
+      </div>
+
+      <!-- 実物の画面（app/index.html）の配色・構成に合わせたモック -->
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <div class="mbar">
+            <div class="mdots"><i class="done"></i><i class="done"></i><i class="miss"></i><i class="now"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="mcount">4 / 10</span>
+            <span>ヒント</span>
+            <span>♪ 音あり</span>
+          </div>
+          <div class="mq">
+            <p class="mlabel">ことわざ</p>
+            <p class="mtext">棚から<span class="mblank">？</span></p>
+            <p class="mhelp">□に入る ことばを えらんでください</p>
+          </div>
+          <div class="mchoices"><i>みかん</i><i>ぼた餅</i><i class="ng">手紙</i><i>小判</i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="specs">
+    <div class="wrap specs-grid">
+      <div class="spec"><b>全100問</b><span>四字熟語50・ことわざ50。毎回10問</span></div>
+      <div class="spec"><b>とにかく大きい</b><span>問題文は最大96px。1画面に収まる</span></div>
+      <div class="spec"><b>タップだけ</b><span>ドラッグなし・時間制限なし・減点なし</span></div>
+      <div class="spec"><b>通信なし・1ファイル</b><span>約35KBのHTML。圏外でも動く</span></div>
+    </div>
+  </div>
+
+  <section class="goods" id="books">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">BOOKS</p>
+        <h2>ことばを、もう少し。</h2>
+        <p>100問を覚えてしまったら、紙の本へ。大きな活字のもの、書き込めるものを選びました。</p>
+      </div>
+      <div class="goods-grid">
+        <div class="good">
+          <p class="gcat">辞典</p>
+          <h3>四字熟語の辞典</h3>
+          <p>由来まで載っているものを1冊。意味を知ると、同じ四字でも手ごたえが変わります。</p>
+          <a class="glink" href="https://www.amazon.co.jp/s?k=%E5%9B%9B%E5%AD%97%E7%86%9F%E8%AA%9E+%E8%BE%9E%E5%85%B8&tag=redcomet-22" target="_blank" rel="sponsored noopener">Amazonで探す ↗</a>
+        </div>
+        <div class="good">
+          <p class="gcat">辞典</p>
+          <h3>ことわざ辞典</h3>
+          <p>「情けは人の為ならず」のように、本来の意味が誤解されやすいものが確かめられます。</p>
+          <a class="glink" href="https://www.amazon.co.jp/s?k=%E3%81%93%E3%81%A8%E3%82%8F%E3%81%96+%E8%BE%9E%E5%85%B8&tag=redcomet-22" target="_blank" rel="sponsored noopener">Amazonで探す ↗</a>
+        </div>
+        <div class="good">
+          <p class="gcat">ドリル</p>
+          <h3>大人の漢字ドリル</h3>
+          <p>書いて覚えるほうが性に合う方へ。書き取りは画面より紙のほうが向いています。</p>
+          <a class="glink" href="https://www.amazon.co.jp/s?k=%E5%A4%A7%E4%BA%BA+%E6%BC%A2%E5%AD%97%E3%83%89%E3%83%AA%E3%83%AB&tag=redcomet-22" target="_blank" rel="sponsored noopener">Amazonで探す ↗</a>
+        </div>
+        <div class="good">
+          <p class="gcat">大活字</p>
+          <h3>大きな文字の本</h3>
+          <p>このパズルと同じ考え方の本。文字が大きいだけで、読む気力はずいぶん違います。</p>
+          <a class="glink" href="https://www.amazon.co.jp/s?k=%E5%A4%A7%E6%B4%BB%E5%AD%97%E6%9C%AC&tag=redcomet-22" target="_blank" rel="sponsored noopener">Amazonで探す ↗</a>
+        </div>
+      </div>
+      <p class="goods-note">商品を1点に決めきれないため、Amazonの検索結果へのリンクにしています。</p>
+    </div>
+  </section>
+
+  <section id="questions">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">01 — QUESTIONS</p>
+        <h2>四字熟語50問、<br>ことわざ50問。</h2>
+        <p>1回に出るのは、そこからランダムに10問。並び順も選択肢の位置も毎回変わります。
+          正解すると、読みと意味が大きな文字で出ます。解いて終わりにせず、
+          そこで一度うなずいてもらうための画面です。</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <p class="num">例1</p>
+          <h3>一石□鳥 — 二</h3>
+          <ul>
+            <li>いっせきにちょう</li>
+            <li>ひとつのことをして、ふたつの得をすること。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="num">例2</p>
+          <h3>情けは□の為ならず — 人</h3>
+          <ul>
+            <li>なさけは ひとの ためならず</li>
+            <li>人への親切は、めぐりめぐって自分に返ってくる。</li>
+            <li>「その人のためにならない」は誤り。解説でそこを書いています</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="num">例3</p>
+          <h3>危機一□ — 髪</h3>
+          <ul>
+            <li>ききいっぱつ</li>
+            <li>もう一歩で危ないという、きわどい場面。</li>
+            <li>選択肢にわざと「発」を混ぜ、解説で違いに触れます</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="num">例4</p>
+          <h3>井の中の蛙□を知らず — 大海</h3>
+          <ul>
+            <li>いのなかの かわず たいかいを しらず</li>
+            <li>狭い世界にいると、広い世界のあることを知らない。</li>
+            <li>いちばん長い問題文。これでも横向きで70pxあります</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">問題は <code>app/questions.js</code> に1問6行で並んでいます。書き足せば、そのまま出題に混ざります。</p>
+    </div>
+  </section>
+
+  <section class="alt" id="design">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">02 — DESIGN</p>
+        <h2>目と指に、<br>無理をさせない。</h2>
+        <p>高齢の方が遊ぶことを前提に作りました。字を大きくするだけでなく、
+          「操作を間違えにくいこと」「間違えても痛くないこと」を同じくらい大事にしています。</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <p class="num">文字</p>
+          <h3>画面の大きさに比例させる</h3>
+          <ul>
+            <li>問題文は横向きで57〜80px、縦向きで58〜96px</li>
+            <li>正解後の意味の文も22〜37px</li>
+            <li>長い句は自動で少し縮め、枠から出さない</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="num">操作</p>
+          <h3>タップだけ</h3>
+          <ul>
+            <li>ドラッグ＆ドロップは指が離れて失敗しやすいので使わない</li>
+            <li>選択肢は高さ54px以上、画面の下半分に配置</li>
+            <li>ピンチでの拡大も止めていない</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="num">失敗</p>
+          <h3>減点も、時間切れもない</h3>
+          <ul>
+            <li>間違えたタイルに ✕ が付くだけ。何度でも選び直せる</li>
+            <li>ゲームオーバーなし。最後は必ず「おつかれさまでした」</li>
+            <li>詰まったら「ヒント」で選択肢を2つに減らせる</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="num">見え方</p>
+          <h3>色だけに頼らない</h3>
+          <ul>
+            <li>本文のコントラスト比は15:1以上</li>
+            <li>正誤は色に加えて ○ / ✕ の記号でも示す</li>
+            <li>1画面1タスク。スクロールは一切なし</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="night" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">03 — HOW TO PLAY</p>
+        <h2>開いて、押すだけ。</h2>
+        <p>説明書は要りません。空欄のある言葉と、4つのタイル。それだけの画面です。</p>
+      </div>
+
+      <div class="night-grid">
+        <div class="night-list">
+          <div class="night-item">
+            <b>進み具合</b>
+            <span>画面の上の帯が10問分の目盛りです。一度で正解した問題は緑、
+              選び直した問題は黄色になります。最後に★の数で振り返れます。</span>
+          </div>
+          <div class="night-item">
+            <b>ヒント</b>
+            <span>1問につき1回、選択肢を4つから2つに減らせます。
+              使っても先へ進めなくなることはありません。</span>
+          </div>
+          <div class="night-item">
+            <b>音</b>
+            <span>正解と不正解で短い音が鳴ります。うるさければ「♪ 音あり」を押して止められます。
+              音が出せない端末では自動的に無効になります。</span>
+          </div>
+        </div>
+
+        <div class="steps-box">
+          <div class="flow-step"><em>1</em><span><a href="app/">app/</a> を開く。スマホならホーム画面に追加しておくと便利</span></div>
+          <div class="flow-step"><em>2</em><span>「一石□鳥」の□に入るものを、4つのタイルから選ぶ</span></div>
+          <div class="flow-step"><em>3</em><span>正解したら、読みと意味を読んで「つぎへ」</span></div>
+          <div class="flow-step"><em>4</em><span>10問で1回。「もう一度 あそぶ」で別の10問が出る</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">04 — FAQ</p>
+        <h2>よくある質問</h2>
+      </div>
+
+      <details>
+        <summary>通信はしますか？</summary>
+        <p>しません。読み込むのはHTMLとJavaScriptだけで、遊んでいる間に外部と通信する処理はありません。
+          成績もどこにも送らず、端末にも保存しません。<code>app/standalone.html</code> を1つ保存しておけば、圏外でも遊べます。</p>
+      </details>
+      <details>
+        <summary>スマホは横向きと縦向き、どちらですか？</summary>
+        <p>どちらでも遊べます。横向きなら問題文を1行に収めて選択肢を横一列に、
+          縦向きなら問題文を折り返して大きくし、選択肢を2×2に並べ替えます。回すだけで切り替わります。</p>
+      </details>
+      <details>
+        <summary>時間制限はありますか？</summary>
+        <p>ありません。考えている間に画面が変わることも、急かされることもありません。
+          間違えても減点はなく、正解するまで何度でも選び直せます。</p>
+      </details>
+      <details>
+        <summary>施設やイベントで使ってもいいですか？</summary>
+        <p>どうぞ。MIT Licenseなので、公民館やデイサービス、学校などで自由に使えます。
+          プロジェクターに映して、みんなで考える使い方もできます（文字は画面の大きさに比例して大きくなります）。</p>
+      </details>
+      <details>
+        <summary>問題を増やしたり、入れ替えたりできますか？</summary>
+        <p>できます。<code>app/questions.js</code> に、問題文・正解・選択肢4つ・読み・意味を1問6行で並べてあるだけです。
+          郷土の言い回しを足す、といった使い方も想定しています。</p>
+      </details>
+      <details>
+        <summary>名前の由来は？</summary>
+        <p>タップ（tap）するだけで遊べる、ことば（KOTOBA）のパズルだからです。
+          アイコンは選択肢のタイルと、空欄の「？」です。</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <p class="eyebrow" style="justify-content:center">READY TO TAP</p>
+      <h2>まずは、一石□鳥から。</h2>
+      <p style="margin-top:14px">インストールも登録も要りません。ブラウザで開けば、すぐ1問目です。</p>
+      <div class="hero-actions">
+        <a class="btn btn-main" href="app/">いますぐ遊ぶ</a>
+        <a class="btn btn-sub" href="app/standalone.html" download="tap-on-kotoba.html">1ファイル版をダウンロード</a>
+      </div>
+      <p class="hero-note">MIT License · 依存ライブラリなし</p>
+    </div>
+  </section>
+
+  <section class="family" id="family">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">MORE TOOLS</p>
+        <h2>同じ作者の、ほかのツール。</h2>
+      </div>
+      <div class="family-grid">
+        <a class="fam" href="https://pikaring.github.io/rock-on-mj/"><img src="https://pikaring.github.io/rock-on-mj/assets/icon.png" alt=""><b>ROCK ON MJ</b><span>Web会議を録音して、PCの中だけで文字起こし</span></a>
+        <a class="fam" href="https://pikaring.github.io/ride-on-qc/"><img src="https://pikaring.github.io/ride-on-qc/assets/icon.png" alt=""><b>Ride on QC</b><span>曲がり角ごとの地図と風向きが出る、ブルベのキューシート</span></a>
+        <a class="fam" href="https://pikaring.github.io/reach-on-sanma/"><img src="https://pikaring.github.io/reach-on-sanma/assets/icon.png" alt=""><b>Reach on SANMA</b><span>登録もダウンロードも要らない三人麻雀</span></a>
+        <a class="fam" href="https://pikaring.github.io/eat-on-gpx/"><img src="https://pikaring.github.io/eat-on-gpx/assets/icon.png" alt=""><b>Eat on GPX</b><span>ルート沿いのコンビニ・食堂を、スタートからの距離順に</span></a>
+        <a class="fam" href="https://pikaring.github.io/all-in-texas/"><img src="https://pikaring.github.io/all-in-texas/assets/icon.png" alt=""><b>All in TEXAS</b><span>勝率が見える、初心者のためのテキサスホールデム</span></a>
+        <a class="fam current" href="https://pikaring.github.io/tap-on-kotoba/"><img src="assets/icon.png" alt=""><b>Tap on KOTOBA</b><span>大きな文字で遊ぶ、四字熟語・ことわざの穴うめ</span><em>このページ</em></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>Tap on KOTOBA</span>
+    <a href="https://github.com/pikaring/tap-on-kotoba">GitHub</a>
+    <a href="https://github.com/pikaring/tap-on-kotoba/blob/main/LICENSE">MIT License</a>
+    <a href="https://github.com/pikaring/tap-on-kotoba/blob/main/README.md">README</a>
+    <span class="counter">累計アクセス <b id="counter-value">―</b> 回</span>
+    <span class="sep">依存ライブラリなし・外部素材なし</span>
+    <span class="disclosure">当サイトはAmazonアソシエイト・プログラムに参加しており、掲載しているリンクから商品が買われると運営者に紹介料が入る場合があります。</span>
+  </div>
+</footer>
+
+<script>
+// アクセスカウンター（庁内Webと同じGAS。page名でサイトごとに別カウント）
+(function () {
+  var el = document.getElementById('counter-value');
+  if (!el) return;
+  var page = location.pathname.replace(/index\.html$/, '');
+  fetch('https://script.google.com/macros/s/AKfycbxkQLZXNAFXkT7zhIO0TmMDGU3A0TQ234Lf-yhw5J7lvFAjCi3KLNLRd_LKd_xlOxPd/exec?page=' + encodeURIComponent(page))
+    .then(function (r) { return r.json(); })
+    .then(function (d) { el.textContent = Number(d.count).toLocaleString('ja-JP'); })
+    .catch(function () { el.textContent = '―'; });
+})();
+</script>
+</body>
+</html>
