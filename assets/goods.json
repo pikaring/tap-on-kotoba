@@ -1,12 +1,6 @@
 {
- "fetchedAt": "2026-09-22T07:54:02+09:00",
+ "fetchedAt": "2026-09-22T07:58:54+09:00",
  "items": {
-  "4385139881": {
-   "title": "新明解故事ことわざ辞典 第二版",
-   "image": "https://m.media-amazon.com/images/I/51q2KXNKitL._SL500_.jpg",
-   "price": "￥3,300",
-   "url": "https://www.amazon.co.jp/dp/4385139881?tag=redcomet-22&linkCode=ogi&th=1&psc=1"
-  },
   "4781624936": {
    "title": "楽しみながら脳を活性化！大人の漢字ドリル200日　いきいき脳活編",
    "image": "https://m.media-amazon.com/images/I/51OYtZjodXL._SL500_.jpg",
@@ -24,6 +18,12 @@
    "image": "https://m.media-amazon.com/images/I/31xLLlJ5MVL._SL500_.jpg",
    "price": "￥2,585",
    "url": "https://www.amazon.co.jp/dp/4865743618?tag=redcomet-22&linkCode=ogi&th=1&psc=1"
+  },
+  "4866513918": {
+   "title": "毎日脳活1 30日30種最新脳ドリル (大人の脳トレマラソン)",
+   "image": "https://m.media-amazon.com/images/I/51Iv07JaHcL._SL500_.jpg",
+   "price": "￥1,375",
+   "url": "https://www.amazon.co.jp/dp/4866513918?tag=redcomet-22&linkCode=ogi&th=1&psc=1"
   }
  }
 }
