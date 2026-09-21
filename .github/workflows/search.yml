@@ -1,0 +1,25 @@
+name: search
+
+# 一時的な 調査用。Creators API で キーワード検索を ためし、候補の ASIN を ログに 出す。
+on:
+  workflow_dispatch:
+    inputs:
+      keywords:
+        description: '検索キーワード（｜で区切る）'
+        required: true
+        default: '四字熟語 辞典｜ことわざ 辞典｜大人 漢字 ドリル｜大活字本'
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - env:
+          CREATORS_CLIENT_ID: ${{ secrets.CREATORS_CLIENT_ID }}
+          CREATORS_CLIENT_SECRET: ${{ secrets.CREATORS_CLIENT_SECRET }}
+        run: |
+          IFS='｜' read -ra KW <<< "${{ github.event.inputs.keywords }}"
+          python tools/search_goods.py "${KW[@]}"
