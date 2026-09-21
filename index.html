@@ -363,5 +363,34 @@
     .catch(function () { el.textContent = '―'; });
 })();
 </script>
+<script>
+// Amazon Creators API で取った商品情報（tools/fetch_goods.py が assets/goods.json に書く）。
+// data-asin を つけた カードにだけ、画像と価格を 足す。無ければ テキストのまま。
+(function () {
+  var cards = document.querySelectorAll('.good[data-asin]');
+  if (!cards.length) return;
+  fetch('assets/goods.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
+    var at = new Date(d.fetchedAt);
+    var stamp = isNaN(at) ? '' : (at.getMonth() + 1) + '/' + at.getDate() + '時点';
+    cards.forEach(function (c) {
+      var it = d.items && d.items[c.dataset.asin];
+      if (!it) return;
+      if (it.image) {
+        var img = document.createElement('img');
+        img.className = 'gimg'; img.src = it.image; img.alt = ''; img.loading = 'lazy';
+        c.insertBefore(img, c.firstChild);
+      }
+      if (it.price) {
+        var p = document.createElement('p');
+        p.className = 'gprice';
+        p.innerHTML = it.price + (stamp ? ' <small>' + stamp + '</small>' : '');
+        var link = c.querySelector('.glink');
+        c.insertBefore(p, link);
+      }
+      if (it.url) { var a = c.querySelector('.glink'); if (a) a.href = it.url; }
+    });
+  }).catch(function () { /* 取れなければ何もしない */ });
+})();
+</script>
 </body>
 </html>

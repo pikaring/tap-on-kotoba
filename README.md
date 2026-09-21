@@ -160,3 +160,17 @@ Playwright で 6 サイズ（横向き 844×390 / 667×375 / 1024×600、縦向�
 
 MIT License。問題文・解説文を含め、自由に使えます。
 公民館・デイサービス・学校などでの利用もどうぞ。
+
+## 紹介ページの 本（Amazonアソシエイト）
+
+`index.html` の `<div class="good">` が本のカードです。いまは商品を1点に決めきれないため、
+Amazon の検索結果へのリンクにしています。
+
+**特定の商品に決めたとき**は、カードに `data-asin="ASIN"` を足し、リンクを
+`https://www.amazon.co.jp/dp/ASIN?tag=redcomet-22` にすると、`assets/goods.json` から
+表紙画像と価格が後付けで入ります（ほかのサイトと同じ作り）。
+
+- 生成：`tools/fetch_goods.py`（`index.html` の `data-asin` を拾う）
+- 毎日の更新：`.github/workflows/goods.yml`（3:00 JST。`data-asin` が無いあいだは何も起きません）
+- 必要な Secrets：Settings → Secrets and variables → Actions に
+  `CREATORS_CLIENT_ID` と `CREATORS_CLIENT_SECRET`（未登録でもワークフローは失敗しません）
